@@ -6479,3 +6479,11 @@ blockquote.pullquote.right {
     max-height: 75vh !important;
   }
 }
+#veditor:focus {
+  background-position-y: 200px;
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  -moz-transition: all 0.2s ease-in-out 0s;
+  -o-transition: all 0.2s ease-in-out 0s;
+  -ms-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+}
