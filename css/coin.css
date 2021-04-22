@@ -85,7 +85,7 @@
   transform: scale(0);
   transform-origin: 50% 20%;
   transition: transform 200ms cubic-bezier(0, 0, 0.35, 1.43);
-  width: 100%;
+  width: 130%;
   z-index: 1;
 }
 
