@@ -63,7 +63,7 @@ svg.icon.festival-decoration {
 
 @font-face{
   font-family:'Candyhome' ;  /* 字体名自定义即可 */
-  src:url('/fonts/candy.ttf'); /* 字体文件路径 */
+  src:url('/fonts/happy.ttf'); /* 字体文件路径 */
   font-display : swap;
 }
 h1#site-title {
