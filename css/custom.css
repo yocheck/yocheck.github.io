@@ -1,10 +1,20 @@
 /*iconfont默认样式*/
 .icon {
-  width: 1.5em; height: 1.5em;
-  vertical-align: -0.5em;
+  width: 1em; height: 1em;
+  vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
   }
+  
+svg.icon {
+  /* 这里定义svg.icon，避免和Butterfly自带的note标签冲突 */
+   width: 1em; height: 1em;
+   /* width和height定义图标的默认宽度和高度*/
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
+}
+
 /* 页脚蝴蝶振翅动画 */
 .copyright svg{
   animation:butterfly 1s linear infinite alternate;
@@ -50,3 +60,14 @@ svg.icon.festival-decoration {
     transform-origin: center top;
   }
 }
+
+@font-face{
+  font-family:'Candyhome' ;  /* 字体名自定义即可 */
+  src:url('/fonts/candy.ttf'); /* 字体文件路径 */
+  font-display : swap;
+}
+h1#site-title {
+  font-family: 'Candyhome', sans-serif;
+}
+
+	
