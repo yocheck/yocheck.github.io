@@ -69,5 +69,12 @@ svg.icon.festival-decoration {
 h1#site-title {
   font-family: 'Candyhome', sans-serif;
 }
-
+@font-face{
+  font-family:'Bodyfont' ;  /* 字体名自定义即可 */
+  src:url('/fonts/siyuansong.ttf'); /* 字体文件路径 */
+  font-display : swap;
+}
+body {
+  font-family:'Bodyfont', sans-serif;
+}
 	
