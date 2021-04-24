@@ -178,10 +178,6 @@ template {
 [hidden] {
   display: none
 }
-
-@font-face { font-family:MyFont;
-src: url(https:xxx)}
-body{font-family:MyFont!important;}
 .limit-one-line,
 #article-container .flink .flink-list > .flink-list-item a .flink-item-name,
 #article-container .flink .flink-list > .flink-list-item a .flink-item-desc,
@@ -1345,7 +1341,7 @@ body {
   background: var(--global-bg);
   color: var(--font-color);
   font-size: var(--global-font-size);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
+  font-family: BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serifhex;
   line-height: 2;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -2091,6 +2087,7 @@ blockquote footer cite:before {
 }
 #page .category-lists .category-list a {
   color: var(--font-color);
+  font-size: 1.4em;
 }
 #page .category-lists .category-list a:hover {
   color: #49b1f5;
@@ -2098,6 +2095,7 @@ blockquote footer cite:before {
 #page .category-lists .category-list .category-list-count {
   margin-left: 0.4rem;
   color: #858585;
+  font-size: 1.2em;
 }
 #page .category-lists .category-list .category-list-count:before {
   content: '(';
@@ -2106,13 +2104,13 @@ blockquote footer cite:before {
   content: ')';
 }
 #page .category-lists ul {
-  margin-top: 0.4rem;
+  margin-top: 1.8rem;
   padding: 0 0 0 1rem;
   list-style: none;
   counter-reset: li;
 }
 #page .category-lists ul ul {
-  padding-left: 0.2rem;
+  padding-left: 1.4rem;
 }
 #page .category-lists ul li {
   position: relative;
@@ -2129,10 +2127,10 @@ blockquote footer cite:before {
   -ms-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
   top: 0.7em;
-  width: 0.43em;
-  height: 0.43em;
-  border: 0.215em solid #49b1f5;
-  border-radius: 0.43em;
+  width: 0.53em;
+  height: 0.53em;
+  border: 0.265em solid #49b1f5;
+  border-radius: 0.53em;
   background: transparent;
   content: '';
 }
@@ -3538,26 +3536,22 @@ span.categoryBar-list-count::after {
   right: -100%;
 }
 li.categoryBar-list-item:nth-child(1) {
-  background: url('https://cdn.jsdelivr.net/gh/Akilarlxh/Akilarlxh.github.io@v3.3.3_2/img/cover1.webp');
+  background: url('https://i.loli.net/2021/04/24/cCSNQ3JzG2lFXni.jpg');
 }
 li.categoryBar-list-item:nth-child(2) {
-  background: #abcdef;
+  background: url('https://i.loli.net/2021/04/24/cCSNQ3JzG2lFXni.jpg');
 }
 li.categoryBar-list-item:nth-child(3) {
-  background: rgba(45,67,89,0.7);
+  background: url('https://i.loli.net/2021/04/24/cCSNQ3JzG2lFXni.jpg');
 }
 li.categoryBar-list-item:nth-child(4) {
-  background: -webkit-linear-gradient(rgba(0, 0, 0, 0.4) 25%, rgba(200,16 , 16, 0) 100%);
-  background: -moz-linear-gradient(rgba(0, 0, 0, 0.4) 25%, rgba(200,16 , 16, 0) 100%);
-  background: -o-linear-gradient(rgba(0, 0, 0, 0.4) 25%, rgba(200,16 , 16, 0) 100%);
-  background: -ms-linear-gradient(rgba(0, 0, 0, 0.4) 25%, rgba(200,16 , 16, 0) 100%);
-  background: linear-gradient(rgba(0, 0, 0, 0.4) 25%, rgba(200,16 , 16, 0) 100%);
+  background: url('https://i.loli.net/2021/04/24/cCSNQ3JzG2lFXni.jpg');
 }
 li.categoryBar-list-item:nth-child(5) {
-  background: url('https://cdn.jsdelivr.net/gh/Akilarlxh/Akilarlxh.github.io@v3.3.3_2/img/cover5.webp');
+  background: url('https://i.loli.net/2021/04/24/cCSNQ3JzG2lFXni.jpg');
 }
 li.categoryBar-list-item:nth-child(6) {
-  background: url('https://cdn.jsdelivr.net/gh/Akilarlxh/Akilarlxh.github.io@v3.3.3_2/img/cover6.webp');
+  background: url('https://i.loli.net/2021/04/24/cCSNQ3JzG2lFXni.jpg');
 }
 li.categoryBar-list-item:nth-child(1)>span::after {
   content: !important;
@@ -4922,7 +4916,7 @@ _:future,
   border: 1px solid #49b1f5;
   border-radius: 0.6rem;
   color: #49b1f5;
-  font-size: 0.85em;
+  font-size: 1em;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -7619,7 +7613,7 @@ p.p.subtitle:first-child {
 }
 span.p.logo,
 p.p.logo {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
+  font-family: BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serifhex;
 }
 span.p.code,
 p.p.code {

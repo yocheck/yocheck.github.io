@@ -71,10 +71,12 @@ h1#site-title {
 }
 @font-face{
   font-family:'Bodyfont' ;  /* 字体名自定义即可 */
-  src:url('/fonts/siyuansong.ttf'); /* 字体文件路径 */
+  src:url('/fonts/FZQiangKTJW.TTF'); /* 字体文件路径 */
   font-display : swap;
 }
 body {
-  font-family:'Bodyfont'!important, sans-serif;
+  font-family:'Bodyfont', sans-serif;
 }
-	
+#site-subtitle{
+  font-family: 'Bodyfont', sans-serif;
+}	
