@@ -2104,7 +2104,7 @@ blockquote footer cite:before {
   content: ')';
 }
 #page .category-lists ul {
-  margin-top: 1.8rem;
+  margin-top: 2rem;
   padding: 0 0 0 1rem;
   list-style: none;
   counter-reset: li;
@@ -3536,22 +3536,28 @@ span.categoryBar-list-count::after {
   right: -100%;
 }
 li.categoryBar-list-item:nth-child(1) {
-  background: url('https://i.loli.net/2021/04/24/cCSNQ3JzG2lFXni.jpg');
+  background: url('https://i.loli.net/2021/04/25/nBVwsoNOPKCDU6u.png');
 }
 li.categoryBar-list-item:nth-child(2) {
-  background: url('https://i.loli.net/2021/04/24/cCSNQ3JzG2lFXni.jpg');
+  background: url('https://i.loli.net/2021/04/25/FVcmqjQSGLZKXdO.png');
 }
 li.categoryBar-list-item:nth-child(3) {
-  background: url('https://i.loli.net/2021/04/24/cCSNQ3JzG2lFXni.jpg');
+  background: url('https://i.loli.net/2021/04/25/XCwbtDLaTz4WAOZ.png');
 }
 li.categoryBar-list-item:nth-child(4) {
-  background: url('https://i.loli.net/2021/04/24/cCSNQ3JzG2lFXni.jpg');
+  background: url('https://i.loli.net/2021/04/25/TB1IWyxnYZ3v95g.png');
 }
 li.categoryBar-list-item:nth-child(5) {
-  background: url('https://i.loli.net/2021/04/24/cCSNQ3JzG2lFXni.jpg');
+  background: url('https://i.loli.net/2021/04/25/JvAMFrRgT1Efai7.png');
 }
 li.categoryBar-list-item:nth-child(6) {
-  background: url('https://i.loli.net/2021/04/24/cCSNQ3JzG2lFXni.jpg');
+  background: url('https://i.loli.net/2021/04/25/f7YmJVyTOkFPiQC.png');
+}
+li.categoryBar-list-item:nth-child(7) {
+  background: url('https://i.loli.net/2021/04/25/qupYQEKJHoRmbAN.png');
+}
+li.categoryBar-list-item:nth-child(8) {
+  background: url('https://i.loli.net/2021/04/25/iCSPWeM7k1RZsG5.png');
 }
 li.categoryBar-list-item:nth-child(1)>span::after {
   content: !important;
