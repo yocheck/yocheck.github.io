@@ -63,20 +63,29 @@ svg.icon.festival-decoration {
 
 @font-face{
   font-family:'Candyhome' ;  /* 字体名自定义即可 */
-  src:url('/fonts/happy.ttf'); /* 字体文件路径 */
+  src:url('/fonts/happy.TTF'); /* 字体文件路径 */
   font-display : swap;
 }
-h1#site-title {
-  font-family: 'Candyhome', sans-serif;
-}
+
 @font-face{
   font-family:'Bodyfont' ;  /* 字体名自定义即可 */
   src:url('/fonts/FZQiangKTJW.TTF'); /* 字体文件路径 */
   font-display : swap;
 }
+@font-face{
+  font-family:'Maomi' ;  /* 字体名自定义即可 */
+  src:url('/fonts/FZYouMaoZaiJ.TTF'); /* 字体文件路径 */
+  font-display : swap;
+}
 body {
   font-family:'Bodyfont', sans-serif;
 }
+h1#site-title {
+  font-family: 'Candyhome', sans-serif;
+}
 #site-subtitle{
-  font-family: 'Bodyfont', sans-serif;
+  font-family: 'Maomi', sans-serif;
+}
+#site-title {
+  font-family: 'Candyhome', sans-serif;
 }	
