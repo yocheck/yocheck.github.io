@@ -1300,7 +1300,7 @@ canvas:not(#ribbon-canvas),
   }
 }
 :root {
-  --global-font-size: 14px;
+  --global-font-size: 16px;
   --global-bg: #fff;
   --font-color: #4c4948;
   --hr-border: #a4d8fa;
@@ -2104,7 +2104,7 @@ blockquote footer cite:before {
   content: ')';
 }
 #page .category-lists ul {
-  margin-top: 2rem;
+  margin-top: 2.7rem;
   padding: 0 0 0 1rem;
   list-style: none;
   counter-reset: li;
@@ -3076,7 +3076,7 @@ blockquote footer cite:before {
   color: #a9a9a9;
   content: attr(progress-percentage);
   font-style: italic;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 #aside-content :only-child > .card-widget {
   margin-top: 0;
@@ -3752,7 +3752,7 @@ li.categoryBar-list-item {
 #page-header #site-title {
   margin: 0;
   color: var(--white);
-  font-size: 1.85em;
+  font-size: 1.65em;
 }
 @media screen and (min-width: 768px) {
   #page-header #site-title {
@@ -4015,7 +4015,7 @@ _:future,
   padding: 0 36px;
   width: 100%;
   height: 60px;
-  font-size: 1.5em;
+  font-size: 1.4em;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
@@ -4652,7 +4652,7 @@ _:future,
 #pagination .next-post .label {
   color: var(--light-grey);
   text-transform: uppercase;
-  font-size: 90%;
+  font-size: 120%;
 }
 #pagination .prev-post,
 #pagination .next-post {
@@ -4922,7 +4922,7 @@ _:future,
   border: 1px solid #49b1f5;
   border-radius: 0.6rem;
   color: #49b1f5;
-  font-size: 1em;
+  font-size: 1.1em;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -6270,7 +6270,7 @@ details {
   margin: 1em 0;
   border-radius: 4px;
   background: #fff;
-  font-size: 14px;
+  font-size: 16px;
   -webkit-transition: all 0.28s ease;
   -moz-transition: all 0.28s ease;
   -o-transition: all 0.28s ease;
@@ -7370,7 +7370,7 @@ div.videos[col='4'] iframe {
   display: -ms-flexbox;
   display: box;
   display: flex;
-  font-size: 14px;
+  font-size: 16px;
   background-color: rgba(88,88,88,0.6);
   border-radius: 0.25rem;
   margin: 1rem 0;
@@ -7642,7 +7642,7 @@ p.p.right {
 }
 span.p.small,
 p.p.small {
-  font-size: 14px;
+  font-size: 16px;
 }
 span.p.large,
 p.p.large {
