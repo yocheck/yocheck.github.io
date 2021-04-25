@@ -82,8 +82,13 @@ svg.icon.festival-decoration {
   src:url('/fonts/FZBaiZDZ115JW.TTF'); /* 字体文件路径 */
   font-display : swap;
 }
+@font-face{
+  font-family:'yingwen' ;  /* 字体名自定义即可 */
+  src:url('/fonts/Adelle_Regular.OTF'); /* 字体文件路径 */
+  font-display : swap;
+}
 body {
-  font-family:'Bodyfont', sans-serif;
+  font-family: 'yingwen', 'Bodyfont', 'yingwen', sans-serif;
 }
 #site-subtitle{
   font-family: 'Maomi', sans-serif;
@@ -95,5 +100,5 @@ body {
   font-family: 'Bodyfont', sans-serif;
 }
 #site-name{
-  font-family: 'Bodyfont', sans-serif;
+  font-family: 'yingwen', 'Bodyfont', sans-serif;
 }
