@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Java中的自动装箱与拆箱 | 阿不思羊的小屋</title><meta name="keywords" content="内存机制,自动拆装箱"><meta name="author" content="羊羊羊"><meta name="copyright" content="羊羊羊"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、 什么是自动装箱拆箱12345&#x2F;&#x2F;自动装箱Integer total &#x3D; 99;&#x2F;&#x2F;自动拆箱int totalprim &#x3D; total; 简单一点说，装箱就是自动将基本数据类型转换为包装器类型；拆箱就是自动将包装器类型转换为基本数据类型。 下面我们来看看需要装箱拆箱的类型有哪些：     基本数据类型 包装器类型     int（4字节） Integer   short（2字节） Short">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中的自动装箱与拆箱">
+<meta property="og:url" content="http://yocheck.top/posts/1ca5350f.html">
+<meta property="og:site_name" content="阿不思羊的小屋">
+<meta property="og:description" content="一、 什么是自动装箱拆箱12345&#x2F;&#x2F;自动装箱Integer total &#x3D; 99;&#x2F;&#x2F;自动拆箱int totalprim &#x3D; total; 简单一点说，装箱就是自动将基本数据类型转换为包装器类型；拆箱就是自动将包装器类型转换为基本数据类型。 下面我们来看看需要装箱拆箱的类型有哪些：     基本数据类型 包装器类型     int（4字节） Integer   short（2字节） Short">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/04/22/oFMHfSCDpLYKAT3.jpg">
+<meta property="article:published_time" content="2021-04-28T06:19:06.185Z">
+<meta property="article:modified_time" content="2021-04-28T13:15:14.825Z">
+<meta property="article:author" content="羊羊羊">
+<meta property="article:tag" content="内存机制">
+<meta property="article:tag" content="自动拆装箱">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/04/22/oFMHfSCDpLYKAT3.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://yocheck.top/posts/1ca5350f"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/fonts/FZBaiZDZ115JW.TTF" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 羊羊羊","link":"链接: ","source":"来源: 阿不思羊的小屋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-28 21:15:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/css/copyright.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/mouse.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="http://yocheck.top/"><i class="fa-fw fas fa-splotch faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-bolt faa-tada"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw fas fa-tags faa-tada"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-rat"></use></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fab fa-freebsd faa-tada"></i><span> 爱好</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="fa-fw fas fa-music faa-tada"></i><span> 音乐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/movies/"><i class="fa-fw fas fa-video faa-tada"></i><span> 电影</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-rabbit"></use></svg><span> 追番</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://coinshen.cc/box/"><i class="fa-fw fab fa-earlybirds faa-tada"></i><span> 万能盒</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw fas fa-heart faa-tada"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/04/22/oFMHfSCDpLYKAT3.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" onclick="btf.scrollToDest(0, 500)" data-title="欢迎光临阿不思羊的小屋, 愿你有愉快的一天~">Java中的自动装箱与拆箱</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="http://yocheck.top/"><i class="fa-fw fas fa-splotch faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-bolt faa-tada"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw fas fa-tags faa-tada"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-rat"></use></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fab fa-freebsd faa-tada"></i><span> 爱好</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="fa-fw fas fa-music faa-tada"></i><span> 音乐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/movies/"><i class="fa-fw fas fa-video faa-tada"></i><span> 电影</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-rabbit"></use></svg><span> 追番</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://coinshen.cc/box/"><i class="fa-fw fab fa-earlybirds faa-tada"></i><span> 万能盒</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw fas fa-heart faa-tada"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Java中的自动装箱与拆箱</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-28T06:19:06.185Z" title="发表于 2021-04-28 14:19:06">2021-04-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-28T13:15:14.825Z" title="更新于 2021-04-28 21:15:14">2021-04-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Java中的自动装箱与拆箱"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="一、-什么是自动装箱拆箱"><a href="#一、-什么是自动装箱拆箱" class="headerlink" title="一、 什么是自动装箱拆箱"></a>一、 什么是自动装箱拆箱</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自动装箱</span></span><br><span class="line">Integer total = <span class="number">99</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//自动拆箱</span></span><br><span class="line"><span class="keyword">int</span> totalprim = total;</span><br></pre></td></tr></table></figure>
+<p>简单一点说，装箱就是自动将基本数据类型转换为包装器类型；拆箱就是自动将包装器类型转换为基本数据类型。</p>
+<p>下面我们来看看需要装箱拆箱的类型有哪些：<br><img src="https://i.loli.net/2021/04/28/wUJGdbE7B5lzP8L.png" alt=""></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">基本数据类型</th>
+<th style="text-align:left">包装器类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">int（4字节）</td>
+<td style="text-align:left">Integer</td>
+</tr>
+<tr>
+<td style="text-align:left">short（2字节）</td>
+<td style="text-align:left">Short</td>
+</tr>
+<tr>
+<td style="text-align:left">long（8字节）</td>
+<td style="text-align:left">Long</td>
+</tr>
+<tr>
+<td style="text-align:left">float（4字节）</td>
+<td style="text-align:left">Float</td>
+</tr>
+<tr>
+<td style="text-align:left">double（8字节）</td>
+<td style="text-align:left">Double</td>
+</tr>
+<tr>
+<td style="text-align:left">char（2字节）</td>
+<td style="text-align:left">Character</td>
+</tr>
+<tr>
+<td style="text-align:left">boolean（未定）</td>
+<td style="text-align:left">Boolean</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这个过程是自动执行的，那么我们需要看看它的执行过程：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  <span class="comment">//自动装箱</span></span><br><span class="line">  Integer total = <span class="number">99</span>;</span><br><span class="line">  <span class="comment">//自动拆箱</span></span><br><span class="line">  <span class="keyword">int</span> totlaprim = total;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>反编译class文件之后得到如下内容：<code>javap -c StringTest</code></p>
+<p><img src="https://i.loli.net/2021/04/28/eCzXj3amIDrqbUB.png" alt=""><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer total = <span class="number">99</span>;</span><br></pre></td></tr></table></figure><br>执行上面那句代码的时候，系统为我们执行了：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer total = Integer.valueOf(<span class="number">99</span>);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> totalprim = total;</span><br></pre></td></tr></table></figure>
+<p>执行上面那句代码时，系统为我们执行了：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> totalprim = total.intValue();</span><br></pre></td></tr></table></figure></p>
+<p>我们现在就以Integer为例，来分析一下它的源码：</p>
+<ol>
+<li><p>首先来看看<code>Integer.valueOf</code>函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(ini i)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> i &gt;= <span class="number">128</span> || i &lt; -<span class="number">128</span> ? <span class="keyword">new</span> Integer(i) : SMALL_VALUES[i + <span class="number">128</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它会首先判断i的大小：如果i小于-128或者大于等于128，就创建一个Integer对象，否则执行<code>SMALL_VALUES[i+128]</code><br>首先我们来看看Integer的构造函数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> value;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Integer</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.value = value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Integer</span><span class="params">(String string)</span> <span class="keyword">throws</span> NumbeFormatException </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>(parseInt(string));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它里面定义了一个value变量，创建一个Integer对象，就会给这个变量初始化。第二个传入的是一个String变量，它会先把它转换成一个int值，<br>下面看看<code>SMALL_VALUES[i+128]</code>是什么东西：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> statis <span class="keyword">final</span> Integer[] SMALL_VALUES = <span class="keyword">new</span> Integer[<span class="number">256</span>];</span><br></pre></td></tr></table></figure>
+<p>它是一个静态的integer数组对象，也就是说最终valueOf返回的都是一个Integer对象。<br>所以我们这里可以总结一点：<br><u>装箱的过程会创建对应的对象，这个会消耗内存，所以装箱的过程会增加内存的消耗，影响内存。</u></p>
+</li>
+<li><p>接着看看intValue函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">intValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个很简单，直接返回value值即可。</p>
+</li>
+</ol>
+<h3 id="二、-相关问题"><a href="#二、-相关问题" class="headerlink" title="二、 相关问题"></a>二、 相关问题</h3><p>上面我们看到在Integer的构造函数中，它分为两种情况：</p>
+<ol>
+<li>i &gt;= 128 || i &lt; -128 =====&gt; new Integer(i)</li>
+<li>i &lt; 128 &amp;&amp; i &gt;= -128 ====&gt; SMALL_VALUES[i + 128]<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Integer[] SMALL_VALUES = <span class="keyword">new</span> Integer[<span class="number">256</span>];</span><br></pre></td></tr></table></figure>
+SMALL_VALUES本来已经被创建好，也就是说在i &gt;= 128 || i &lt; -128时会创建不同的对象， 在i &lt; 128 &amp;&amp; i &gt;= -128 会根据i的值返回已经创建好的指定的对象。</li>
+</ol>
+<p>说这些可能还不是很明白，下面我们来举个例子吧：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(string[] args)</span> </span>&#123;</span><br><span class="line">    Integer i1 = <span class="number">100</span>;</span><br><span class="line">    Integer i2 = <span class="number">100</span>;</span><br><span class="line">    Integer i3 = <span class="number">200</span>;</span><br><span class="line">    Integer i4 = <span class="number">200</span>;</span><br><span class="line">    System.out.println(i1 == i2);  <span class="comment">//true</span></span><br><span class="line">    System.out.println(i3 == i4);  <span class="comment">//false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>代码的后面，我们可以看到它们的执行结果是不一样的，为什么。再看看我们上面的说明。</p>
+<ol>
+<li>i1和i2会进行自动装箱，执行了valueOf函数，它们的值在[-128, 127]这个范围内，它们会拿到SMALL_VALUES数组里面的同一个对象SMALL_VALUES[228], 它们引用到了同一个Integer对象，所以它们肯定是相等的。</li>
+<li>i3和i4也会自动装箱，执行了valueOf函数，它们的值大于127，所以会执行new Integer(200)，也就是说它们会分别创建两个不同的对象，所以它们肯定不等。<br>下面我们来看看另外一个例子：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(string[] args)</span> </span>&#123;</span><br><span class="line">    Double i1 = <span class="number">100.0</span>;</span><br><span class="line">    Double i2 = <span class="number">100.0</span>;</span><br><span class="line">    Double i3 = <span class="number">200.0</span>;</span><br><span class="line">    Double i4 = <span class="number">200.0</span>;</span><br><span class="line">    System.out.println(i1==i2); <span class="comment">//false</span></span><br><span class="line">    System.out.println(i3==i4); <span class="comment">//false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+看看上面的执行结果，跟Integer 不一样，这样也不必奇怪，因为它们的valueOf实现不一样，结果肯定也不一样，那为什么它们不统一一下呢？<br>这个很好理解，因为对于Integer， 在[-128, 127]之间只有固定的256个值，所以为了避免多次创建对象，我们事先先创建好一个大小为256的Integer数组SMALL_VALUES, 所以如果值在这个范围内，就可以直接返回我们事先创建好的对象就可以了。</li>
+</ol>
+<p>但是对于Double类型来说，我们就不能这么做，因为它在这个范围内个数是无限的。<br>总结一句就是：<u>在某个范围内的整型数值的个数是有限的，而浮点数却不是。</u></p>
+<p>所以在Double里面的做法很直接，就是直接创建一个对象所以每次创建的对象都不一样。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Double <span class="title">valueOf</span><span class="params">(<span class="keyword">double</span> d)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Double(d);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>下面我们进行一个归类：<br>Integer派别：Integer、Short、Byte、Character、Long这几个类的valueOf方法的实现是类似的。<br>Double派别：Double、Float的valueOf方法的实现是类似的。每次都返回不同的对象。<br>下面对Integer派别进行一个总结，如下图：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">相同对象范围</th>
+<th style="text-align:left">不同对象范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Integer</td>
+<td style="text-align:left">[-128, 128)</td>
+<td style="text-align:left">i &gt;= 128 &#124;&#124; i &lt; -127</td>
+</tr>
+<tr>
+<td style="text-align:left">Short</td>
+<td style="text-align:left">[-128, 128)</td>
+<td style="text-align:left">s &gt;= 128 &#124;&#124; i &lt; -127</td>
+</tr>
+<tr>
+<td style="text-align:left">Integer</td>
+<td style="text-align:left">c &lt;  128</td>
+<td style="text-align:left">c &gt;= 128</td>
+</tr>
+<tr>
+<td style="text-align:left">Long</td>
+<td style="text-align:left">[-128, 128)</td>
+<td style="text-align:left">v &gt;= 128 &#124;&#124; i &lt; -127</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>下面我们来看一看另外一种情况：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Boolean i1 = <span class="keyword">false</span>;</span><br><span class="line">    Boolean i2 = <span class="keyword">false</span>;</span><br><span class="line">    Boolean i3 = <span class="keyword">true</span>;</span><br><span class="line">    Boolean i4 = <span class="keyword">true</span>;</span><br><span class="line">		</span><br><span class="line">    System.out.println(i1==i2);  <span class="comment">//true</span></span><br><span class="line">    System.out.println(i3==i4);  <span class="comment">//true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>可以看到返回的都是true， 也就是它们执行valueOf返回的都是相同的对象。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Boolean <span class="title">valueOf</span><span class="params">(Boolean b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b ? Boolean.TRUE : Boolean.FALSE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>可以看到他并没有创建对象，因为在内部已经提前创建好两个对象，因为它只有两种情况， 这样也是为了避免重复创建太多的对象。</p>
+<p>上面把几种情况都介绍到了，下面来进一步讨论其他情况。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer num1 = <span class="number">400</span>;</span><br><span class="line"><span class="keyword">int</span> num2 = <span class="number">400</span>;</span><br><span class="line">System.out.println(num1 == num2); <span class="comment">//true</span></span><br></pre></td></tr></table></figure><br>说明 num1 == num2进行了拆箱操作<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer num1 = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> num2 = <span class="number">100</span>;</span><br><span class="line">System.out.println(num1.equals(num2)); <span class="comment">//true</span></span><br></pre></td></tr></table></figure><br>我们先来看看equals源码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (o <span class="keyword">instanceof</span> Integer) &amp;&amp; (((Integer) o).value == value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>我们指定equal比较的是内容本身，并且我们也可以看到equal的参数是一个Object对象，我们传入的是一个int类型，所以首先会进行装箱，然后比较，之所以返回true，是由于它比较的是对象里面的value值。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Integer num1 = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> num2 = <span class="number">100</span>;</span><br><span class="line">Long num3 = <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line">System.out.println(num1 + num2);    <span class="comment">//200</span></span><br><span class="line">System.out.println(num3 == (num1 + num2));    <span class="comment">//true 自动拆箱</span></span><br><span class="line">System.out.println(num3.equals(num1 + num2));    <span class="comment">//false</span></span><br></pre></td></tr></table></figure><br><u>1. 当一个基础数据类型与封装类进行==、+、-、*、/运算时，会将封装类进行拆箱，对基础数据类型进行运算。</u><br><u>2. 对于num3.equals(num1+num2)为false的原因很简单，我们还是根据代码实现来说明：</u><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (o <span class="keyword">instanceof</span> Long) &amp;&amp; (((Long) o).value == value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>它必须满足两个条件才为true：</p>
+<ol>
+<li>类型相同 （上面返回false的原因就是类型不同）</li>
+<li>内容相同<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Integer num1 = <span class="number">100</span>;</span><br><span class="line">Integer num2 = <span class="number">200</span>;</span><br><span class="line">Long num3 = <span class="number">300</span>;</span><br><span class="line">System.out.println(num3 == (num1 + num2));    <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+我们来反编译一下这个class文件，<code>javap -c StringTest</code></li>
+</ol>
+<p><img src="https://i.loli.net/2021/04/28/IqBXjsmQ2ylz8wT.png" alt=""><br>可以看到运算的时候首先对num3进行拆箱（执行num3的longValue得到基础类型为long的值300），然后对num1和num2进行拆箱（分别执行了num1和num2）然后进行相关的基础运算。<br>我们来对基础类型进行一个测试：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num1 = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> num2 = <span class="number">200</span>;</span><br><span class="line"><span class="keyword">long</span> num3 = <span class="number">300</span>;</span><br><span class="line">System.out.println(num3 == (num1 + num2)); <span class="comment">//true</span></span><br></pre></td></tr></table></figure><br>上面就说明了为什么最上面会返回true。<br>所以，当”==”运算符的两个操作数都是包装器类型的引用，则是比较指向的是否是同一个对象，而如果其中有一个操作数是表达式（即包含算数运算）则比较的是数值（即会触发自动拆箱的过程）。</p>
+<p>通过上面的分析我们需要知道两点：</p>
+<ol>
+<li>什么时候会引发装箱和拆箱</li>
+<li>装箱操作会创建对象，频繁的装箱操作会消耗许多内存，影响性能，所以可以避免装箱的时候应该尽量避免。</li>
+<li>equals(Object o) 因为原equals方法中的参数类型是封装类型，所传入的参数类型（a）是原始数据类型，所以会自动对其装箱，反之，会对其进行拆箱。</li>
+<li>当两种不同类型用”\==”比较时，包装器类的需要拆箱，当同种类型用”\==”比较时，会自动拆箱或装箱。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>Java中的自动装箱与拆箱</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="http://yocheck.top/posts/1ca5350f.html">http://yocheck.top/posts/1ca5350f.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>羊羊羊</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2021-04-28</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2021-04-28</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/">内存机制</a><a class="post-meta__tags" href="/tags/%E8%87%AA%E5%8A%A8%E6%8B%86%E8%A3%85%E7%AE%B1/">自动拆装箱</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/04/22/oFMHfSCDpLYKAT3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><link rel="stylesheet" href="/css/coin.css" media="defer" onload="this.media='all'"/><div class="post-reward"><button class="tip-button reward-button"><span class="tip-button__text">打赏</span><div class="coin-wrapper"><div class="coin"><div class="coin__middle"></div><div class="coin__back"></div><div class="coin__front"></div></div></div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li></ul></div></button></div><script defer="defer" src="/js/coin.js"></script><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/posts/f3e88753.html"><img class="prev-cover" src="https://i.loli.net/2021/04/22/HdCoZVr1SqfpmJk.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">升级操作系统 No.1</div></div></a></div></nav><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"></div><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item"><a class="categoryBar-list-link" href="/categories/Hexo/">Hexo</a><span class="categoryBar-list-count">2</span></li><li class="categoryBar-list-item"><a class="categoryBar-list-link" href="/categories/Java/">Java</a><span class="categoryBar-list-count">1</span></li><li class="categoryBar-list-item"><a class="categoryBar-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="categoryBar-list-count">1</span></li><li class="categoryBar-list-item"><a class="categoryBar-list-link" href="/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录</a><span class="categoryBar-list-count">1</span></li></ul></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E4%BB%80%E4%B9%88%E6%98%AF%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E6%8B%86%E7%AE%B1"><span class="toc-text">一、 什么是自动装箱拆箱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="toc-text">二、 相关问题</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://i.loli.net/2021/04/22/oFMHfSCDpLYKAT3.jpg')"><div id="footer-wrap"><div class="copyright"><span>&copy;2021</span><svg style="width:1.5em; height:1.5em" aria-hidden="true"><use xlink:href="#icon-Butterfly"></use></svg><span>羊羊羊</span></div><div class="footer_custom_text">啦啦啦啦啦啦啦，<a href="http://yocheck.top/">我</a>是卖报的小行家~</div><div id="workboard"></div><script async="async" src="/js/runtime.js"></script></div><div class="container" id="jsi-flying-fish-container"></div><script src="js/fish.js"></script><style>@media only screen and (max-width: 767px){
+#sidebar_search_box input[type=text]{width:calc(100% - 24px)}
+}</style></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'FBdHvi9s9GzXRFJNa8hEQGFH-MdYXbMMI',
+      appKey: '7e8Dtcq5SEv9fBxj4TBHVF7D',
+      placeholder: '记得留下您的昵称和邮箱，可以快速收到回复哦~(❁´◡`❁)',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: 'https://fbdhvi9s.api.lncldglobal.com',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      master: 'eef131660b73d6cf7ffd074e4fea602f',
+      friends: ["3e12f71272bd9f9480ede4e9597ff1fc"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></script><script async src="//at.alicdn.com/t/font_2264842_3izu8i5eoc2.js"></script><script async src="//at.alicdn.com/t/font_2032782_8ns648avijk.js"></script><script async src="//at.alicdn.com/t/font_2032782_ev6ytrh30f.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'yocheck/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (false) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":250,"height":600},"mobile":{"show":true},"react":{"opacity":0.95},"log":false});</script></body></html>
